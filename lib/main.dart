@@ -39,21 +39,45 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              "Hola, Bienvenido a Flutter",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
+      appBar: AppBar(
+        title: const Text(
+          "Mi App",
+          textAlign: TextAlign.center,
+        ),
+      ),
+      body: Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            "Hola, Bienvenido a Flutter",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
             ),
-          ],
-        )));
+          ),
+          Image.network(
+              "https://okdiario.com/img/2019/06/21/colibri-655x368.jpeg",
+              height: 500,
+              fit: BoxFit.cover),
+          IconButton(
+            onPressed: () => {print("HOLIIIS")},
+            icon: const Icon(
+              Icons.close,
+              color: Colors.blue,
+            ),
+            iconSize: 100,
+          ),
+        ],
+      )),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () => {print("Soy floating")}),
+      drawer: Drawer(),
+      endDrawer: Drawer(),
+/*       backgroundColor: Colors.blueGrey, */
+    );
   }
 }
 
