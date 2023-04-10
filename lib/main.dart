@@ -44,33 +44,52 @@ class MyHomePage extends StatelessWidget {
           "Mi App",
           textAlign: TextAlign.center,
         ),
-      ),
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            "Hola, Bienvenido a Flutter",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue,
-            ),
-          ),
-          Image.network(
-              "https://okdiario.com/img/2019/06/21/colibri-655x368.jpeg",
-              height: 500,
-              fit: BoxFit.cover),
-          IconButton(
-            onPressed: () => {print("HOLIIIS")},
-            icon: const Icon(
-              Icons.close,
-              color: Colors.blue,
-            ),
-            iconSize: 100,
-          ),
+        actions: const <Widget>[
+          IconButton(onPressed: add, icon: Icon(Icons.add))
         ],
-      )),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        leading:
+            IconButton(onPressed: () => {}, icon: const Icon(Icons.arrow_back)),
+      ),
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children:  [
+                const Expanded(
+                  child: Text(
+                    "Activar Sonido",
+                    
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+                // ignore: avoid_print
+                Switch(value: true, onChanged: (value) => {print("Hola soy switch")})
+              ],
+            ),
+            Image.network(
+                "https://okdiario.com/img/2019/06/21/colibri-655x368.jpeg",
+                height: 100,
+                fit: BoxFit.contain),
+            IconButton(
+              onPressed: () => {print("Soy button")},
+              icon: const Icon(
+                Icons.close,
+                color: Colors.blue,
+              ),
+              iconSize: 100,
+            ),
+            Container(color: Colors.blue[300], height: 20, width: 100)
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () => {print("Soy floating")}),
@@ -79,6 +98,10 @@ class MyHomePage extends StatelessWidget {
 /*       backgroundColor: Colors.blueGrey, */
     );
   }
+}
+
+add() {
+  print('soy appBar');
 }
 
 /* class MyHomePage extends StatefulWidget {
