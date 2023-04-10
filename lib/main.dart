@@ -53,41 +53,67 @@ class MyHomePage extends StatelessWidget {
       ),
       body: SizedBox(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              children:  [
-                const Expanded(
-                  child: Text(
-                    "Activar Sonido",
-                    
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue,
-                    ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Activar Sonido",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
+                      ),
+                      // ignore: avoid_print
+                      Switch(
+                          value: true,
+                          onChanged: (value) => {print("Hola soy switch")})
+                    ],
                   ),
-                ),
-                // ignore: avoid_print
-                Switch(value: true, onChanged: (value) => {print("Hola soy switch")})
-              ],
-            ),
-            Image.network(
-                "https://okdiario.com/img/2019/06/21/colibri-655x368.jpeg",
-                height: 100,
-                fit: BoxFit.contain),
-            IconButton(
-              onPressed: () => {print("Soy button")},
-              icon: const Icon(
-                Icons.close,
-                color: Colors.blue,
+                  const Divider(),
+                  Row(
+                    children: [
+                      const Expanded(
+                        child: Text(
+                          "Activar Camara",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                      // ignore: avoid_print
+                      Switch(
+                          value: true,
+                          onChanged: (value) => {print("Hola soy switch")})
+                    ],
+                  ),
+                ],
               ),
-              iconSize: 100,
-            ),
-            Container(color: Colors.blue[300], height: 20, width: 100)
-          ],
+              Image.network(
+                  "https://okdiario.com/img/2019/06/21/colibri-655x368.jpeg",
+                  height: 100,
+                  fit: BoxFit.contain),
+              IconButton(
+                onPressed: () => {print("Soy button")},
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.blue,
+                ),
+                iconSize: 100,
+              ),
+              Container(color: Colors.blue[300], height: 20, width: 100)
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
