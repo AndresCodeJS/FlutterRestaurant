@@ -15,26 +15,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+/* class MyHomePage extends StatelessWidget {
   final String title;
 
-  const MyHomePage({super.key, required this.title});
+  List<String> listaLetras = ["a", "b", "d"];
+
+  MyHomePage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -51,86 +44,35 @@ class MyHomePage extends StatelessWidget {
         leading:
             IconButton(onPressed: () => {}, icon: const Icon(Icons.arrow_back)),
       ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "Activar Sonido",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      // ignore: avoid_print
-                      Switch(
-                          value: true,
-                          onChanged: (value) => {print("Hola soy switch")})
-                    ],
-                  ),
-                  const Divider(),
-                  Row(
-                    children: [
-                      const Expanded(
-                        child: Text(
-                          "Activar Camara",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue,
-                          ),
-                        ),
-                      ),
-                      // ignore: avoid_print
-                      Switch(
-                          value: true,
-                          onChanged: (value) => {print("Hola soy switch")})
-                    ],
-                  ),
-                ],
-              ),
-              Image.network(
-                  "https://okdiario.com/img/2019/06/21/colibri-655x368.jpeg",
-                  height: 100,
-                  fit: BoxFit.contain),
-              IconButton(
-                onPressed: () => {print("Soy button")},
-                icon: const Icon(
-                  Icons.close,
-                  color: Colors.blue,
-                ),
-                iconSize: 100,
-              ),
-              Container(color: Colors.blue[300], height: 20, width: 100)
-            ],
-          ),
-        ),
+      body: ListView.builder(
+        itemCount: listaLetras.length,
+        itemBuilder: (BuildContext context, int index) {
+          final name = listaLetras[index];
+          /*   return Card(margin: const EdgeInsets.all(10),child: Text(name), ); */
+          return Card(
+              child: ListTile(
+            title: Text(name),
+            leading: const Icon(Icons.person),
+            onTap: () => {onTap(name)},
+          ));
+        },
       ),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () => {print("Soy floating")}),
-      drawer: Drawer(),
-      endDrawer: Drawer(),
-/*       backgroundColor: Colors.blueGrey, */
     );
   }
 }
 
-add() {
-  print('soy appBar');
+onTap(String name) {
+ print("Hola Soy ${name}");
 }
 
-/* class MyHomePage extends StatefulWidget {
+add() {
+  print('soy appBar');
+} */
+
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
@@ -151,19 +93,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Center(
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:'
-            ),
+            const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
@@ -178,4 +116,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-} */
+}
