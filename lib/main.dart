@@ -102,12 +102,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onLongPress: _onLongPress,
               child: Text(
                 '$_counter',
-                style: TextStyle(
-                    fontSize: 30,
-                    color: cambiaColor ? Colors.blue : Colors.black),
+                style: const TextStyle(fontSize: 30, color: Colors.blue),
                 /*  style: Theme.of(context).textTheme.headlineMedium, */
               ),
             ),
+            OutlinedButton(onPressed: () {}, child: const Text("OutLine Button")),
+            TextButton(onPressed: () {}, child: const Text("Text Button")),
+            ElevatedButton(onPressed: () {}, child: const Text("Elevated Button")),
             Switch(
               value: valueSwitch,
               onChanged: (value) {
