@@ -84,13 +84,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   bool valueSwitch = false;
-
-  void _incrementCounter() {
-    setState(() {
-      print("Debbugeando");
-      _counter++;
-    });
-  }
+  bool cambiaColor = false;
 
   @override
   Widget build(BuildContext context) {
@@ -103,16 +97,25 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            GestureDetector(
+              onTap: _onTap,
+              onLongPress: _onLongPress,
+              child: Text(
+                '$_counter',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: cambiaColor ? Colors.blue : Colors.black),
+                /*  style: Theme.of(context).textTheme.headlineMedium, */
+              ),
             ),
-            Switch(value: valueSwitch, onChanged:(value) {
-              setState(() {
-              valueSwitch = value;
-                
-              });
-            },)
+            Switch(
+              value: valueSwitch,
+              onChanged: (value) {
+                setState(() {
+                  valueSwitch = value;
+                });
+              },
+            )
           ],
         ),
       ),
@@ -122,5 +125,23 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      print("Debbugeando");
+      _counter++;
+    });
+  }
+
+  void _onTap() {
+    print("Pulsaste");
+    setState(() {
+      cambiaColor = !cambiaColor;
+    });
+  }
+
+  void _onLongPress() {
+    print("Mantuviste presionando");
   }
 }
