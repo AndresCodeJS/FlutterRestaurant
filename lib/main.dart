@@ -1,6 +1,7 @@
 /* import 'dart:html'; */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_start3/screens/second_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    /*   home: MyHomePage(title: 'Flutter Demo Home Page'), */
+    routes: {
+      "/":  (BuildContext context)=> const MyHomePage(title: 'Flutter Demo Home Page'),
+      "/second" :  (BuildContext context)=> const SecondPage(),
+    },
     );
   }
 }
@@ -106,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 /*  style: Theme.of(context).textTheme.headlineMedium, */
               ),
             ),
-            OutlinedButton(onPressed: () {}, child: const Text("OutLine Button")),
+            OutlinedButton(onPressed: () { _showSecondPage(context);}, child: const Text("Second Page")),
             TextButton(onPressed: () {}, child: const Text("Text Button")),
             ElevatedButton(onPressed: () {}, child: const Text("Elevated Button")),
             Switch(
@@ -124,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), 
     );
   }
 
@@ -145,4 +150,17 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onLongPress() {
     print("Mantuviste presionando");
   }
+  
+  void _showSecondPage(BuildContext context) {
+
+    Navigator.of(context).pushNamed("/second", arguments: Persona(apellido: "Gomez",nombre:"Andres"));
+
+  }
+}
+
+class Persona{
+  final String nombre;
+  final String apellido;
+  Persona({this.nombre = "", this.apellido = " "});
+
 }
