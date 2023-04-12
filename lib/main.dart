@@ -135,6 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.only(left: 50, right: 50, bottom: 20),
               child: TextField(
                 decoration: const InputDecoration(labelText: "Nombre"),
+                keyboardType: TextInputType.emailAddress,
                 controller: nameTextController,
               ),
             ),
