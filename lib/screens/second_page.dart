@@ -14,7 +14,12 @@ class SecondPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title:const Text("Second Page")),
       body:   Center(
-        child: Text(persona.nombre),
+        child: Column(
+          children: [
+            Text(persona.nombre),
+            Text(persona.apellido),
+          ],
+        ),
       )
 
     );

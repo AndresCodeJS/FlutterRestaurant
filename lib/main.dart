@@ -18,11 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-    /*   home: MyHomePage(title: 'Flutter Demo Home Page'), */
-    routes: {
-      "/":  (BuildContext context)=> const MyHomePage(title: 'Flutter Demo Home Page'),
-      "/second" :  (BuildContext context)=> const SecondPage(),
-    },
+      /*   home: MyHomePage(title: 'Flutter Demo Home Page'), */
+      routes: {
+        "/": (BuildContext context) =>
+            const MyHomePage(title: 'Flutter Demo Home Page'),
+        "/second": (BuildContext context) => const SecondPage(),
+      },
     );
   }
 }
@@ -91,6 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
   bool valueSwitch = false;
   bool cambiaColor = false;
 
+  late TextEditingController nameTextController;
+  late TextEditingController lastNameTextController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,9 +115,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 /*  style: Theme.of(context).textTheme.headlineMedium, */
               ),
             ),
-            OutlinedButton(onPressed: () { _showSecondPage(context);}, child: const Text("Second Page")),
+            OutlinedButton(
+                onPressed: () {
+                  _showSecondPage(context);
+                },
+                child: const Text("Second Page")),
             TextButton(onPressed: () {}, child: const Text("Text Button")),
-            ElevatedButton(onPressed: () {}, child: const Text("Elevated Button")),
+            ElevatedButton(
+                onPressed: () {}, child: const Text("Elevated Button")),
             Switch(
               value: valueSwitch,
               onChanged: (value) {
@@ -121,6 +130,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   valueSwitch = value;
                 });
               },
+            ),
+             Padding(
+              padding: const EdgeInsets.only(left: 50, right: 50, bottom: 20),
+              child: TextField(
+                decoration: const InputDecoration(labelText: "Nombre"),
+                controller: nameTextController,
+              ),
+            ),
+             Padding(
+              padding: const EdgeInsets.only(left: 50, right: 50, bottom: 20),
+              child: TextField(
+                decoration: const InputDecoration(labelText: "Apellido"),
+                controller: lastNameTextController,
+              ),
             )
           ],
         ),
@@ -129,8 +152,23 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), 
+      ),
     );
+  }
+
+  @override
+  void initState() {
+    nameTextController = TextEditingController();
+    lastNameTextController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    nameTextController.dispose();
+    lastNameTextController.dispose();
   }
 
   void _incrementCounter() {
@@ -150,17 +188,15 @@ class _MyHomePageState extends State<MyHomePage> {
   void _onLongPress() {
     print("Mantuviste presionando");
   }
-  
+
   void _showSecondPage(BuildContext context) {
-
-    Navigator.of(context).pushNamed("/second", arguments: Persona(apellido: "Gomez",nombre:"Andres"));
-
+    Navigator.of(context).pushNamed("/second",
+        arguments: Persona(apellido: lastNameTextController.text, nombre: nameTextController.text));
   }
 }
 
-class Persona{
+class Persona {
   final String nombre;
   final String apellido;
   Persona({this.nombre = "", this.apellido = " "});
-
 }
