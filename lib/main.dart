@@ -95,6 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController nameTextController;
   late TextEditingController lastNameTextController;
 
+  late FocusNode focusName;
+  late FocusNode focusLastName;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,6 +140,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: const InputDecoration(labelText: "Nombre"),
                 keyboardType: TextInputType.emailAddress,
                 controller: nameTextController,
+                focusNode: focusName,
+                onEditingComplete: () => requestFocus(context, focusLastName),
+                textInputAction: TextInputAction.next,
               ),
             ),
              Padding(
@@ -144,6 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextField(
                 decoration: const InputDecoration(labelText: "Apellido"),
                 controller: lastNameTextController,
+                focusNode: focusLastName,
               ),
             )
           ],
@@ -161,6 +168,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     nameTextController = TextEditingController();
     lastNameTextController = TextEditingController();
+
+    focusName = FocusNode();
+    focusLastName = FocusNode();
     super.initState();
   }
 
@@ -170,6 +180,14 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
     nameTextController.dispose();
     lastNameTextController.dispose();
+
+    focusName.dispose();
+    focusLastName.dispose();
+  }
+
+  //FocusNode
+  void requestFocus(BuildContext context, FocusNode focusNode){
+    FocusScope.of(context).requestFocus(focusNode);
   }
 
   void _incrementCounter() {
