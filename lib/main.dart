@@ -98,9 +98,13 @@ class _MyHomePageState extends State<MyHomePage> {
   late FocusNode focusName;
   late FocusNode focusLastName;
 
+  //Drawer
+  final _scaffKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffKey,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -125,7 +129,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Text("Second Page")),
             TextButton(onPressed: () {}, child: const Text("Text Button")),
             ElevatedButton(
-                onPressed: () {}, child: const Text("Elevated Button")),
+                onPressed: () {
+                  _showSnackBar(context);
+                },
+                child: const Text("Elevated Button")),
             Switch(
               value: valueSwitch,
               onChanged: (value) {
@@ -158,9 +165,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       drawer: _getDrawer(context),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () => {_scaffKey.currentState?.openDrawer()},
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.list),
       ),
     );
   }
@@ -204,7 +211,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    
     super.dispose();
     nameTextController.dispose();
     lastNameTextController.dispose();
@@ -246,6 +252,17 @@ class _MyHomePageState extends State<MyHomePage> {
         arguments: Persona(
             apellido: lastNameTextController.text,
             nombre: nameTextController.text));
+  }
+
+  //SanckBar
+  void _showSnackBar(BuildContext context) {
+    SnackBar snackBar = SnackBar(
+      content: const Text("Elemento Elimiando"),
+      action: SnackBarAction(label: "Deshacer", onPressed: () => { print("Cancela deshacer")}),
+
+      
+    );
+   ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
 
