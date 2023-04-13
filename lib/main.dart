@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
             ),
-             Padding(
+            Padding(
               padding: const EdgeInsets.only(left: 50, right: 50, bottom: 20),
               child: TextField(
                 decoration: const InputDecoration(labelText: "Nombre"),
@@ -145,21 +145,49 @@ class _MyHomePageState extends State<MyHomePage> {
                 textInputAction: TextInputAction.next,
               ),
             ),
-             Padding(
+            Padding(
               padding: const EdgeInsets.only(left: 50, right: 50, bottom: 20),
               child: TextField(
                 decoration: const InputDecoration(labelText: "Apellido"),
                 controller: lastNameTextController,
                 focusNode: focusLastName,
               ),
-            )
+            ),
           ],
         ),
       ),
+      drawer: _getDrawer(context),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  Widget _getDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: <Widget>[
+          DrawerHeader(
+              decoration: const BoxDecoration(color: Colors.orange),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const <Widget>[
+                  FlutterLogo(size: 100),
+                  Text(
+                    "Uso de Drawer",
+                    style: TextStyle(color: Colors.white),
+                  )
+                ],
+              )),
+          ListTile(
+            title: const Text("Inicio"),
+            leading: const Icon(Icons.home),
+            onTap: () => _onTapHome(context),
+          )
+        ],
       ),
     );
   }
@@ -176,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    
     super.dispose();
     nameTextController.dispose();
     lastNameTextController.dispose();
@@ -185,8 +213,13 @@ class _MyHomePageState extends State<MyHomePage> {
     focusLastName.dispose();
   }
 
+  //Drawer Options
+  void _onTapHome(BuildContext context) {
+    Navigator.pop(context);
+  }
+
   //FocusNode
-  void requestFocus(BuildContext context, FocusNode focusNode){
+  void requestFocus(BuildContext context, FocusNode focusNode) {
     FocusScope.of(context).requestFocus(focusNode);
   }
 
@@ -210,7 +243,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _showSecondPage(BuildContext context) {
     Navigator.of(context).pushNamed("/second",
-        arguments: Persona(apellido: lastNameTextController.text, nombre: nameTextController.text));
+        arguments: Persona(
+            apellido: lastNameTextController.text,
+            nombre: nameTextController.text));
   }
 }
 
