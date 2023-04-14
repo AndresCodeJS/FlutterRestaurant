@@ -271,12 +271,24 @@ class _MyHomePageState extends State<MyHomePage> {
   //PopPup
   void _showDialog(BuildContext context) {
     showDialog(
-      
         context: context,
         builder: (BuildContext context) {
-          return SimpleDialog(
+          return AlertDialog(
+            title: Text("Pregunta"),
+            content: Text("Seguro que deseas eliminar el elemento ?"),
+            actions: <Widget>[
+              TextButton(onPressed: (){
+                 Navigator.pop(context);
+              }, child: const Text("No")),
+              TextButton(onPressed: (){
+                 Navigator.pop(context);
+              }, child: const Text("Si")),
+            ],
+          );
+         /*  return SimpleDialog(
             title: const Text("Seleccione"),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             children: <Widget>[
               ListTile(
                 title: const Text("Delete"),
@@ -285,10 +297,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   print("delete");
                   Navigator.pop(context);
                 },
-                
               )
             ],
-          );
+          ); */
         });
   }
 }
