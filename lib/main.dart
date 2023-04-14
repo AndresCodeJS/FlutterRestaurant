@@ -271,10 +271,12 @@ class _MyHomePageState extends State<MyHomePage> {
   //PopPup
   void _showDialog(BuildContext context) {
     showDialog(
+      
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(
             title: const Text("Seleccione"),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             children: <Widget>[
               ListTile(
                 title: const Text("Delete"),
@@ -283,6 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   print("delete");
                   Navigator.pop(context);
                 },
+                
               )
             ],
           );
