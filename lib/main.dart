@@ -1,6 +1,7 @@
 /* import 'dart:html'; */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_start3/screens/animations/animationPage.dart';
 import 'package:flutter_start3/screens/second_page.dart';
 
 void main() {
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
       /*   home: MyHomePage(title: 'Flutter Demo Home Page'), */
       routes: {
         "/": (BuildContext context) =>
-            const MyHomePage(title: 'Flutter Demo Home Page'),
+            /* const MyHomePage(title: 'Flutter Demo Home Page'), */
+            const AnimationsPage(),
         "/second": (BuildContext context) => const SecondPage(),
       },
     );
