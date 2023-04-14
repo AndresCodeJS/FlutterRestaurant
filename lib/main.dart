@@ -127,7 +127,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   _showSecondPage(context);
                 },
                 child: const Text("Second Page")),
-            TextButton(onPressed: () {}, child: const Text("Text Button")),
+            TextButton(
+                onPressed: () {
+                  _showDialog(context);
+                },
+                child: const Text("Text Button")),
             ElevatedButton(
                 onPressed: () {
                   _showSnackBar(context);
@@ -258,11 +262,31 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showSnackBar(BuildContext context) {
     SnackBar snackBar = SnackBar(
       content: const Text("Elemento Elimiando"),
-      action: SnackBarAction(label: "Deshacer", onPressed: () => { print("Cancela deshacer")}),
-
-      
+      action: SnackBarAction(
+          label: "Deshacer", onPressed: () => {print("Cancela deshacer")}),
     );
-   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  //PopPup
+  void _showDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: const Text("Seleccione"),
+            children: <Widget>[
+              ListTile(
+                title: const Text("Delete"),
+                leading: const Icon(Icons.delete),
+                onTap: () {
+                  print("delete");
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        });
   }
 }
 
