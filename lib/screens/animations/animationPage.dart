@@ -12,16 +12,26 @@ class AnimationsPage extends StatelessWidget {
         body: ListView.builder(
           itemCount: 50,
           itemBuilder: (context, index) {
-            return Card(
-                /*    child: Image.asset(
-                "assets/circles-menu-1.gif",
-              ), */
-                child: FadeInImage(
-                  height: 300,
-                  
-                    placeholder: const AssetImage("assets/circles-menu-1.gif"),
-                    image: NetworkImage(
-                        "https://picsum.photos/id/$index/400/300")));
+            final String url = "https://picsum.photos/id/$index/400/300";
+            return InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed("/second", arguments: url);
+              },
+              child: Hero(
+                tag: url,
+                child: Card(
+                    /*    child: Image.asset(
+                    "assets/circles-menu-1.gif",
+                  ), */
+                    child: FadeInImage(
+                        height: 300,
+                        fadeInCurve: Curves.easeOutSine,
+                        placeholder:
+                            const AssetImage("assets/circles-menu-1.gif"),
+                        image: NetworkImage(
+                           url))),
+              ),
+            );
           },
         ));
   }

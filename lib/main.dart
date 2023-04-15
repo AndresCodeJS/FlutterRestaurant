@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_start3/screens/animations/animationPage.dart';
-import 'package:flutter_start3/screens/second_page.dart';
+import 'package:flutter_start3/screens/picker/imagePicker.dart';
+
+import 'screens/animations/animationSecondPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,10 +23,12 @@ class MyApp extends StatelessWidget {
       ),
       /*   home: MyHomePage(title: 'Flutter Demo Home Page'), */
       routes: {
-        "/": (BuildContext context) =>
-            /* const MyHomePage(title: 'Flutter Demo Home Page'), */
-            const AnimationsPage(),
-        "/second": (BuildContext context) => const SecondPage(),
+        "/": (BuildContext context) =>  ImagePickerC(),
+        /* "/": (BuildContext context) => const AnimationsPage(), */
+        /* const MyHomePage(title: 'Flutter Demo Home Page'), */
+
+        "/second": (BuildContext context) => const ImageDetail(),
+        /* "/second": (BuildContext context) => const SecondPage(), */
       },
     );
   }
@@ -279,15 +283,19 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text("Pregunta"),
             content: Text("Seguro que deseas eliminar el elemento ?"),
             actions: <Widget>[
-              TextButton(onPressed: (){
-                 Navigator.pop(context);
-              }, child: const Text("No")),
-              TextButton(onPressed: (){
-                 Navigator.pop(context);
-              }, child: const Text("Si")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("No")),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Si")),
             ],
           );
-         /*  return SimpleDialog(
+          /*  return SimpleDialog(
             title: const Text("Seleccione"),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
